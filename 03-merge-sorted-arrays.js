@@ -1,6 +1,6 @@
 // Merge sorted arrays
 
-const arr1 = [];
+const arr1 = [3,4,4,7,21,32];
 const arr2 = [4, 6, 30];
 function mergeSortedArrays(arr1, arr2) {
   //edge cases
