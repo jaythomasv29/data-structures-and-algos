@@ -54,4 +54,51 @@ let funcB = function() {
 ```
 * `Function declaration` is hoisted and moved to the top of their scope before execution
 * `Function expression` behaves like a variable and won't be available until defined, but can be passed to another function
+---
+8. What is promises and why do we use it?
+* Represents the eventual completion of async code and its resulting value that may either resolve or reject
+---
 
+9. `setTimeout()` Puzzle
+What is the output:
+```
+setTimeout(() => {
+  console.log('a')
+}, 0)
+
+console.log('b')
+console.log('c')
+
+Output: 
+b
+c
+a
+```
+* JS is single-threaded and utilizes the event loop, stack and queue to manage code execution
+* Because setTimeout() is async, it will always execute after synchronous code. The event loop delegates what executes and handles concurrency.
+* setTimeout is first added to stack and a timer starts which is added to the cue
+* Continuing through the stack, `console.log('b')` executes and 'b' is logged to the terminal
+* `console.log('c')` is executes and loggs 'c' to the termainal
+* The event loop then checks the queue for any pending executions and finally logs 'a'
+
+10. What is a closure and how to use it?
+* When a function returns another function. The returning function will hold its environment (variables that are needed) in a closure.
+``` let obj = function() {
+  let i = 0;  // this variable is held
+
+  return {
+    setI(k) {
+      i = k
+    },
+    getI() {
+      return i
+    }
+  }
+}
+
+let x = obj()
+x.getI()  // 0
+x.setI(2) 
+console.log(x.getI()) // 2
+```
+* If you look into the Object and inspect it, you will see the scope Closure
