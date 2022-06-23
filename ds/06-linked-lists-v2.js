@@ -13,14 +13,14 @@ class LinkedList {
   }
 
   prepend(value) {
-    const newHead = new Node(value)
+    const newNode = new Node(value)
     if(!this.head) {
       this.head = newNode
       this.tail = newNode
       return
     }
-    newHead.next = this.head  // current head is now the .next of newHead
-    this.head = newHead   // set to head property
+    newNode.next = this.head  // current head is now the .next of newHead
+    this.head = newNode   // set to head property
 
   }
 

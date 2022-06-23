@@ -65,6 +65,70 @@ class LinkedList {
       console.log(node);
       this.rPrint(node.next);  
   }
+
+  sum() {
+    let sum = 0
+    let current = this.head;
+    while(current) {
+      sum += current.value
+      current = current.next
+    }
+    return sum
+  }
+
+  rSum(head) {
+    if(head === null) return 0
+    return head.value += this.rSum(head.next)
+  }
+
+  find(target) {
+    let current = this.head
+    while(current) {
+      if (current.value === target) return true
+      current = current.next
+    }
+    return false
+  }
+
+  rFind(head, target) {
+    if (head === null) return false
+    if (head.value === target) return true
+    return this.rFind(head.next, target)
+  }
+
+  getIndex(idx) {
+    let position = 0
+    let current = this.head
+    while(current) {
+      if(position === idx) return current.value
+      position++
+      current = current.next
+    }
+    return null
+  }
+
+  rGetIndex(head, idx) {
+    if (head === null) return null
+    if (idx === 0) return head.value
+    return this.rGetIndex(head.next, idx - 1)
+  }
+
+  reverse() {
+    let prev = null //null,  1, 2
+    let next = null //null, 2 // 3
+    let current = this.head
+    this.tail = current  // 1
+
+    while(current) {  // LL: [1]<-[2]<-[3]<-[4]
+      next = current.next  //null,  2, 3, 4, null
+      current.next = prev  // null, 1, 2, 3
+      prev = current // 1, 2, 3, 4
+      current = next // 1, 2, 3, 4, null
+    }
+    this.head = prev
+    return this
+  }
+  
 }
 
 const linkedList1 = new LinkedList();
@@ -72,12 +136,18 @@ const linkedList1 = new LinkedList();
 linkedList1.prepend(2);
 linkedList1.append(4);
 linkedList1.append(5);
-// linkedList1.append(6);
-// linkedList1.append('a')
-// linkedList1.append('b')
-// linkedList1.append('c')
-// linkedList1.append('d')
+linkedList1.append(6);
+linkedList1.append('a')
+linkedList1.append('b')
+linkedList1.append('c')
+linkedList1.append('d')
 
 // console.log(linkedList1);
-linkedList1.rPrint(linkedList1.head);
+// linkedList1.rPrint(linkedList1.head);
 // console.log(linkedList1.toArray())
+
+// console.log(linkedList1.sum())
+// console.log('recursively', linkedList1.rSum(linkedList1.head))
+// console.log(linkedList1.rFind(linkedList1.head, 'd'))
+// console.log(linkedList1.rGetIndex(linkedList1.head, 7))
+console.log((linkedList1.reverse().toArray()));
